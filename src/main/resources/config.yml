@@ -1,4 +1,4 @@
-WhitelistEnabled: true
+WhitelistEnabled: false
 CurrentLevel: 1
 KickMSG: &aKicked
 WhitelistedWelcomeMSG: &cWelcome!
