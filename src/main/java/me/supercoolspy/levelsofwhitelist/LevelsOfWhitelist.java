@@ -22,11 +22,7 @@ public final class LevelsOfWhitelist extends JavaPlugin {
         // Plugin startup logic
         instance = this;
         this.getCommand("LevelsOfWhitelist").setExecutor(new Commands());
-        try {
-            getConfig().load("config.yml");
-        } catch (IOException | InvalidConfigurationException e) {
-            getConfig().options().copyDefaults(true);
-        }
+        this.saveDefaultConfig();
         getAndSetWhitelistValues();
         getServer().getPluginManager().registerEvents(new JoinListener(), this);
     }
