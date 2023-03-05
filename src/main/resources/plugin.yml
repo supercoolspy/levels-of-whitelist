@@ -1,11 +1,11 @@
 name: LevelsOfWhitelist
 version: ${project.version}
-main: me.supercoolspy.levelsofwhitelist.Levelsofwhitelist
-api-version: 1.8
+main: me.supercoolspy.levelsofwhitelist.LevelsOfWhitelist
+api-version: 1.19.3
 authors: [ super_cool_spy ]
 description: Set up custom whitelists with custom kick messages
 commands:
   LevelsOfWhitelist:
     description: Your description
     usage: /<command> [on/off/reload/help]
-    permission: Levelsofwhitelist.use
+    permission: LevelsOfWhitelist.use

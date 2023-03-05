@@ -2,3 +2,8 @@ WhitelistEnabled: true
 WhitelistLevel: 1
 KickMSG: Kicked
 WhitelistedWelcomeMSG: Welcome!
+Levels:
+  1:
+    name: &aGreen Whitelist
+  2:
+    name: &cRed Whitelist

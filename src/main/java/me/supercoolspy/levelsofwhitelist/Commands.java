@@ -7,32 +7,58 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Commands implements CommandExecutor {
+    private final LevelsOfWhitelist plugin = LevelsOfWhitelist.getInstance();
 
-    // This method is called, when somebody uses our command
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-                if (args[0].equalsIgnoreCase("on")) {
-                    player.sendMessage(ChatColor.GREEN + "Turned On Whitelist");
-                    Levelsofwhitelist.getPlugin(Levelsofwhitelist.class).getConfig().set("WhitelistEnabled", true);
-                    Levelsofwhitelist.getPlugin(Levelsofwhitelist.class).saveConfig();
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(ChatColor.RED + "You must be a player to use this command!");
+            return true;
+        }
+        if (args.length == 0 || args.length > 2) {
+            player.sendMessage(ChatColor.RED + "Please specify a subcommand! Valid subcommands are: on, off, reload, setlevel <level>");
+            return true;
+        }
+        switch (args[0]) {
+            case "on" -> {
+                player.sendMessage(ChatColor.GREEN + "Turned On Whitelist");
+                plugin.getConfig().set("WhitelistEnabled", true);
+                plugin.saveConfig();
                 return true;
             }
-                else if (args[0].equalsIgnoreCase("off")){
-                    player.sendMessage(ChatColor.RED + "Turned Off Whitelist");
-                    Levelsofwhitelist.getPlugin(Levelsofwhitelist.class).getConfig().set("WhitelistEnabled", false);
-                    Levelsofwhitelist.getPlugin(Levelsofwhitelist.class).saveConfig();
-                    return true;
+            case "off" -> {
+                player.sendMessage(ChatColor.RED + "Turned Off Whitelist");
+                plugin.getConfig().set("WhitelistEnabled", false);
+                plugin.setWhitelistEnabled(false);
+                plugin.saveConfig();
+                return true;
             }
-                else if (args[0].equalsIgnoreCase("reload")){
-                    Levelsofwhitelist.getPlugin(Levelsofwhitelist.class).saveDefaultConfig();
-                    Levelsofwhitelist.getPlugin(Levelsofwhitelist.class).getConfig();
-                    Levelsofwhitelist.getPlugin(Levelsofwhitelist.class).reloadConfig();
-                    player.sendMessage(ChatColor.AQUA + "Reloaded Config");
+            case "reload" -> {
+                plugin.reloadConfig();
+                player.sendMessage(ChatColor.AQUA + "Reloaded Config");
+                return true;
+            }
+            case "setlevel" -> {
+                if (args.length != 2) {
+                    player.sendMessage(ChatColor.RED + "Please specify a level!");
                     return true;
                 }
+                try {
+                    final int level = Integer.parseInt(args[1]);
+                    plugin.getConfig().set("CurrentLevel", level);
+                    plugin.saveConfig();
+                    player.sendMessage(ChatColor.AQUA + "Set level to " + level);
+                    plugin.setCurrentLevel(level);
+                    return true;
+                } catch (NumberFormatException error) {
+                    player.sendMessage(ChatColor.RED + "Please specify a valid level!");
+                    return true;
+                }
+            }
+            default -> {
+                player.sendMessage(ChatColor.RED + "Please specify a subcommand! Valid subcommands are: on, off, reload, setlevel <level>");
+                return true;
+            }
         }
-        return true;
     }
 }
