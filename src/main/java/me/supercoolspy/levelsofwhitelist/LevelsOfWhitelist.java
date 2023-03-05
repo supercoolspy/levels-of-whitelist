@@ -29,6 +29,7 @@ public final class LevelsOfWhitelist extends JavaPlugin {
 
     private void getAndSetWhitelistValues() {
         this.whitelistEnabled = getConfig().getBoolean("WhitelistEnabled");
+        System.out.println("WhitelistEnabled: " + this.whitelistEnabled);
         this.currentLevel = getConfig().getInt("CurrentLevel");
         getConfig().getIntegerList("Levels").forEach(level -> {
             final WhitelistLevel oldWhitelistLevel = this.levels.stream().filter(oldLevel -> oldLevel.getLevel() == level).findFirst().orElse(null);

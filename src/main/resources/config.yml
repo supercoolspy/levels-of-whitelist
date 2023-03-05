@@ -1,9 +1,9 @@
 WhitelistEnabled: false
 CurrentLevel: 1
-KickMSG: &aKicked
-WhitelistedWelcomeMSG: &cWelcome!
+KickMSG: "&cKicked"
+WhitelistedWelcomeMSG: "&aWelcome!"
 Levels:
   1:
-    name: &aGreen Whitelist
+    name: "&aGreen Whitelist"
   2:
-    name: &cRed Whitelist
+    name: "&cRed Whitelist"
