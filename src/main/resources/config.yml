@@ -1,0 +1,4 @@
+WhitelistEnabled: true
+WhitelistLevel: 1
+KickMSG: Kicked
+WhitelistedWelcomeMSG: Welcome!
