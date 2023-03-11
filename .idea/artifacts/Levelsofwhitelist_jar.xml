@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Levelsofwhitelist:jar">
+    <output-path>$PROJECT_DIR$/../../Server/Paper 1.19/plugins</output-path>
+    <root id="archive" name="Levelsofwhitelist.jar">
+      <element id="module-output" name="Levelsofwhitelist" />
+    </root>
+  </artifact>
+</component>
